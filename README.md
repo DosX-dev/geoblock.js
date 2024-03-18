@@ -1,5 +1,5 @@
 # ❌ geoblock.js
-This library checks the user's browser language and blocks access if the language matches one of the blocked country codes
+This library checks the user's browser language and blocks access if the language matches one of the blocked country codes. **It does not check the user's IP address, only the language in the browser**.
 
 ## 📄 Adding it to your site
 Just add `geoblock.js` via `<script>` and specify which countries you want to restrict access to your web resource.
@@ -8,6 +8,9 @@ The example below restricts access to Ukraine (uk) and the United States (us):
 ```html
 <script src="geoblock.js" banned="uk, us" redirect="/block">
 ```
+
+ * In `banned` attribute country codes for denying access are listed (separated by commas)
+ * The `redirect` attribute specifies the absolute or relative address to redirect in case of a match
 
 ## 🌏 Country codes
 | Code       | Name                  |
