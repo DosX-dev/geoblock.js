@@ -2,35 +2,35 @@
 
 (() => {
 
-    let blockedList, redirectTo;
+    let countryCodesList, redirectTo;
 
+    const config = {
+        strings: {
+            listAttrName: "blocked", // Country codes attribute
+            redirAttrName: "redirect" // Redirect to
+        }
+    };
 
     const currentJs = document.currentScript;
 
-    if (currentJs) {
-        blockedList = currentJs.getAttribute("blocked").split(" ").join("").toLowerCase();
-        redirectTo = currentJs.getAttribute("redirect");
+    if (!currentJs)
+        throw new Error("Failed to get current <script> element.");
 
-        if (!blockedList) throw "No 'blocked' attribute.";
-        else if (!redirectTo) throw "No 'redirect' attribute.";
 
-        const blockedListArr = blockedList.split(",");
+    [config.strings.listAttrName, config.strings.redirAttrName].forEach(attributeToCheck => {
+        if (!currentJs.getAttribute(attributeToCheck))
+            throw new Error(`No '${attributeToCheck}' attribute.`);
+    });
 
-        blockedListArr.forEach(country => {
 
-            if (country.length > 2) {
-                throw "You must use the country code in the 'blocked' attribute.";
-            }
+    countryCodesList = currentJs.getAttribute(config.strings.listAttrName).toLowerCase().split(",").map(code => code.trim());
+    redirectTo = currentJs.getAttribute(config.strings.redirAttrName);
 
-            let currentBrowserLanguage = navigator.language.split("-")[0].toLowerCase();
 
-            if (navigator.language !== navigator.languages[0] || country == currentBrowserLanguage) {
-                forbid();
-            }
+    const currentBrowserLanguage = navigator.language.split("-")[0].toLowerCase();
 
-        });
-    } else {
-        throw "Failed to get current <script> element.";
+    if (countryCodesList.includes(currentBrowserLanguage) || navigator.language !== navigator.languages[0]) {
+        forbid();
     }
 
     function forbid() {
