@@ -29,6 +29,8 @@
             }
 
         });
+    } else {
+        throw "Failed to get current <script> element.";
     }
 
     function forbid() {
