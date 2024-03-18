@@ -1,7 +1,7 @@
+![](preview.jpg)
+
 # ❌ geoblock.js
 This library checks the user's browser language and blocks access if the language matches one of the blocked country codes. **It does not check the user's IP address, only the language in the browser**. Therefore, you won’t be able to bypass it using a VPN.
-
-![](preview.jpg)
 
 ## 📄 Adding it to your site
 Just add `geoblock.js` via `<script>` and specify which countries you want to restrict access to your web resource.
