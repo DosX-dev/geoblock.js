@@ -6,9 +6,9 @@ This library checks the user's browser language and blocks access if the languag
 ## 📄 Adding it to your site
 Just add `geoblock.js` via `<script>` and specify which countries you want to restrict access to your web resource.
 
-The example below restricts access to Ukraine (uk) and the United States (us):
+The example below restricts access to Ukraine (ua) and the United States (us):
 ```html
-<script src="geoblock.js" banned="uk, us" redirect="/block">
+<script src="geoblock.js" banned="ua, us" redirect="/block">
 ```
 
  * In `banned` attribute country codes for denying access are listed (separated by commas)
